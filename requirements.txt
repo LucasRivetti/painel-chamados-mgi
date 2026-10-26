@@ -1,0 +1,33 @@
+# Versões usadas no ambiente de desenvolvimento (Python 3.11).
+# Para GPU NVIDIA, instale o torch com CUDA antes deste arquivo:
+#   pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+
+# Dados e utilidades
+pandas==3.0.3
+numpy==2.4.4
+unidecode==1.4.0
+openpyxl==3.1.5
+python-dotenv>=1.0
+
+# PLN e modelagem de tópicos
+nltk==3.9.4
+torch==2.5.1
+sentence-transformers==5.6.0
+bertopic==0.17.4
+umap-learn==0.5.12
+scikit-learn==1.8.0
+
+# LLM local (sumarização e títulos)
+ollama==0.6.2
+
+# Recomendador
+faiss-cpu==1.14.3
+
+# Gráficos e painel
+matplotlib==3.10.9
+seaborn==0.13.2
+plotly==6.7.0
+dash==4.1.0
+dash-auth==2.3.0
+dash-bootstrap-components==2.0.4
+flask==3.1.3
