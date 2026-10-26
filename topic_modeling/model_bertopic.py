@@ -121,6 +121,7 @@ class BERTopic(BERTopic_):
         topic_ids  = topic_info["Topic"].tolist()
         topic_sizes = dict(zip(topic_info["Topic"], topic_info["Count"]))
 
+        mask         = [t != -1 for t in topic_ids]  # ignora o tópico de outliers (-1)
         ids_validos  = [t for t, m in zip(topic_ids, mask) if m]
         emb_validos  = np.array(topic_embeddings)[mask]
 
@@ -154,7 +155,7 @@ def _carregar_umap_params(results_dir: str) -> dict:
     if not os.path.exists(tuned_path):
         raise FileNotFoundError(
             f"Parâmetros do UMAP não encontrados em {tuned_path}. "
-            f"Rode tuning_bertopic.py para esse sistema antes de treinar o modelo final."
+            f"Rode tuning_umap.py para esse sistema antes de treinar o modelo final."
         )
     with open(tuned_path, "r", encoding="utf-8") as f:
         params = json.load(f)
