@@ -77,6 +77,8 @@ app = dash.Dash(
     suppress_callback_exceptions=True,
 )
 server = app.server
+# Chave da sessão do Flask (usada pelo dash-auth); defina DASHBOARD_SECRET_KEY para fixá-la
+server.secret_key = os.environ.get("DASHBOARD_SECRET_KEY") or os.urandom(24)
 
 # Credenciais lidas do ambiente / arquivo .env (veja .env.example)
 DASHBOARD_USUARIO = os.environ.get("DASHBOARD_USUARIO", "mgi")
@@ -809,7 +811,7 @@ def chat_interaction(n_clicks, n_submit, sistema_input, user_text, chat_history,
                 style={"marginBottom": "20px", "backgroundColor": "#FED7D7", "padding": "10px", "borderRadius": "8px", "fontSize": "16px"}
             )
         )
-        return chat_history, "", chat_top, chat_time
+        return chat_history, "", chat_top, chat_time, dash.no_update
 
     user_text_lower = user_text.lower()
     bot_response = None
